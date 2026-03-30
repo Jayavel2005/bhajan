@@ -43,26 +43,26 @@ export const Registration = () => {
         <div ref={sectionRef} className="max-w-3xl mx-auto flex justify-center relative z-10">
           <div 
             ref={cardRef} 
-            className="w-full bg-white rounded-[2.5rem] p-10 md:p-16 text-center shadow-[0_20px_50px_rgba(255,153,51,0.1)] border border-brand-saffron/20 opacity-0 relative overflow-hidden"
+            className="w-full bg-white rounded-[2rem] sm:rounded-[2.5rem] p-6 sm:p-10 md:p-16 text-center shadow-[0_20px_50px_rgba(255,153,51,0.1)] border border-brand-saffron/20 opacity-0 relative overflow-hidden"
           >
             {/* Corner decoration */}
-            <div className="absolute -top-10 -right-10 text-brand-saffron opacity-10 text-[10rem] select-none pointer-events-none rotate-12">
+            <div className="absolute -top-10 -right-10 text-brand-saffron opacity-10 text-[6rem] sm:text-[10rem] select-none pointer-events-none rotate-12 leading-none">
               🕉️
             </div>
             
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-10 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-8 sm:mb-10 leading-tight">
               {t.title}
             </h2>
             
-            <div className="grid md:grid-cols-2 gap-8 mb-12">
-              <div className="bg-[#FFF8F0] rounded-2xl p-6 border border-brand-saffron/10 hover:border-brand-saffron focus-within:outline-none focus:ring-0 shadow-sm">
-                <p className="text-gray-500 font-medium mb-2">{t.entryLabel}</p>
-                <p className="text-3xl font-black text-gray-900">{t.entryValue}</p>
+            <div className="grid sm:grid-cols-2 gap-4 sm:gap-8 mb-10 sm:mb-12">
+              <div className="bg-[#FFF8F0] rounded-2xl p-5 sm:p-6 border border-brand-saffron/10 shadow-sm active:scale-[0.98] transition-transform">
+                <p className="text-gray-500 text-sm sm:text-base font-medium mb-1 sm:mb-2">{t.entryLabel}</p>
+                <p className="text-2xl sm:text-3xl font-black text-gray-900">{t.entryValue}</p>
               </div>
-              <div className="bg-[#FFF8F0] rounded-2xl p-6 border border-brand-gold/20 shadow-sm relative overflow-hidden">
-                <div className="absolute top-0 right-0 p-2 bg-brand-gold text-white text-xs font-bold rounded-bl-xl tracking-wider uppercase">Important</div>
-                <p className="text-gray-500 font-medium mb-2">{t.refundLabel}</p>
-                <p className="text-2xl font-bold text-gray-900">{t.refundValue}</p>
+              <div className="bg-[#FFF8F0] rounded-2xl p-5 sm:p-6 border border-brand-gold/20 shadow-sm relative overflow-hidden active:scale-[0.98] transition-transform">
+                <div className="absolute top-0 right-0 p-1.5 bg-brand-gold text-white text-[10px] font-bold rounded-bl-xl tracking-wider uppercase">Important</div>
+                <p className="text-gray-500 text-sm sm:text-base font-medium mb-1 sm:mb-2">{t.refundLabel}</p>
+                <p className="text-xl sm:text-2xl font-bold text-gray-900">{t.refundValue}</p>
               </div>
             </div>
             

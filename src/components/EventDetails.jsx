@@ -79,64 +79,64 @@ export const EventDetails = () => {
             <div className="h-[2px] w-12 bg-gradient-to-l from-transparent to-brand-saffron/50 rounded-full" />
           </div>
         </div>
-
+        
         {/* Improved 3-Column Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto px-4 md:px-0">
           
           {/* Card 1: Date */}
           <div 
             ref={el => cardsRef.current[0] = el}
             onMouseEnter={e => hoverEffect(e, true)}
             onMouseLeave={e => hoverEffect(e, false)}
-            className="bg-white rounded-2xl p-10 flex flex-col items-center text-center shadow-lg border border-orange-100 opacity-0 transform-gpu cursor-default relative overflow-hidden group"
+            className="bg-white rounded-2xl p-6 sm:p-10 flex flex-col items-center text-center shadow-lg border border-orange-100 opacity-0 transform-gpu cursor-default relative overflow-hidden group"
           >
             <div className="absolute -right-10 -top-10 w-32 h-32 bg-orange-50 rounded-full blur-2xl group-hover:bg-orange-100 transition-colors duration-500 pointer-events-none" />
             
-            <div className="icon-circle w-[72px] h-[72px] rounded-full bg-gradient-to-br from-rose-100 to-orange-100 flex items-center justify-center mb-6 transform-gpu">
-              <CalendarHeart className="w-8 h-8 text-rose-500 drop-shadow-sm" />
+            <div className="icon-circle w-[64px] h-[64px] sm:w-[72px] sm:h-[72px] rounded-full bg-gradient-to-br from-rose-100 to-orange-100 flex items-center justify-center mb-5 sm:mb-6 transform-gpu shadow-sm">
+              <CalendarHeart className="w-7 h-7 sm:w-8 sm:h-8 text-rose-500 drop-shadow-sm" />
             </div>
             
-            <div className="space-y-3 z-10 relative">
-              <h3 className="text-lg font-semibold tracking-wide text-brand-saffron uppercase text-[13px]">{t.dateLabel}</h3>
-              <p className="text-2xl font-bold font-serif text-gray-900 leading-snug">{t.dateValue}</p>
+            <div className="space-y-2 sm:space-y-3 z-10 relative">
+              <h3 className="text-xs sm:text-sm font-semibold tracking-[0.2em] text-brand-saffron uppercase">{t.dateLabel}</h3>
+              <p className="text-xl sm:text-2xl font-bold font-serif text-gray-900 leading-snug">{t.dateValue}</p>
             </div>
           </div>
-
+ 
           {/* Card 2: Venue */}
           <div 
             ref={el => cardsRef.current[1] = el}
             onMouseEnter={e => hoverEffect(e, true)}
             onMouseLeave={e => hoverEffect(e, false)}
-            className="bg-white rounded-2xl p-10 flex flex-col items-center text-center shadow-lg border border-orange-100 opacity-0 transform-gpu cursor-default relative overflow-hidden group"
+            className="bg-white rounded-2xl p-6 sm:p-10 flex flex-col items-center text-center shadow-lg border border-orange-100 opacity-0 transform-gpu cursor-default relative overflow-hidden group"
           >
             <div className="absolute -left-10 top-20 w-32 h-32 bg-amber-50 rounded-full blur-2xl group-hover:bg-amber-100 transition-colors duration-500 pointer-events-none" />
             
-            <div className="icon-circle w-[72px] h-[72px] rounded-full bg-gradient-to-br from-orange-100 to-amber-100 flex items-center justify-center mb-6 transform-gpu">
-              <MapPin className="w-8 h-8 text-orange-500 drop-shadow-sm" />
+            <div className="icon-circle w-[64px] h-[64px] sm:w-[72px] sm:h-[72px] rounded-full bg-gradient-to-br from-orange-100 to-amber-100 flex items-center justify-center mb-5 sm:mb-6 transform-gpu shadow-sm">
+              <MapPin className="w-7 h-7 sm:w-8 sm:h-8 text-orange-500 drop-shadow-sm" />
             </div>
             
-            <div className="space-y-3 z-10 relative">
-              <h3 className="text-lg font-semibold tracking-wide text-brand-saffron uppercase text-[13px]">{t.venueLabel}</h3>
-              <p className="text-xl md:text-2xl font-bold font-serif text-gray-900 leading-snug">{t.venueValue}</p>
+            <div className="space-y-2 sm:space-y-3 z-10 relative">
+              <h3 className="text-xs sm:text-sm font-semibold tracking-[0.2em] text-brand-saffron uppercase">{t.venueLabel}</h3>
+              <p className="text-lg sm:text-xl md:text-2xl font-bold font-serif text-gray-900 leading-snug">{t.venueValue}</p>
             </div>
           </div>
-
+ 
           {/* Card 3: Time */}
           <div 
             ref={el => cardsRef.current[2] = el}
             onMouseEnter={e => hoverEffect(e, true)}
             onMouseLeave={e => hoverEffect(e, false)}
-            className="bg-white rounded-2xl p-10 flex flex-col items-center text-center shadow-lg border border-orange-100 opacity-0 transform-gpu cursor-default relative overflow-hidden group md:col-span-2 lg:col-span-1 md:max-w-md md:mx-auto lg:max-w-none w-full"
+            className="bg-white rounded-2xl p-6 sm:p-10 flex flex-col items-center text-center shadow-lg border border-orange-100 opacity-0 transform-gpu cursor-default relative overflow-hidden group md:col-span-2 lg:col-span-1 md:max-w-md md:mx-auto lg:max-w-none w-full"
           >
             <div className="absolute right-10 -bottom-10 w-32 h-32 bg-yellow-50 rounded-full blur-2xl group-hover:bg-yellow-100 transition-colors duration-500 pointer-events-none" />
             
-            <div className="icon-circle w-[72px] h-[72px] rounded-full bg-gradient-to-br from-yellow-100 to-orange-50 flex items-center justify-center mb-6 transform-gpu">
-              <Clock className="w-8 h-8 text-yellow-500 drop-shadow-sm" />
+            <div className="icon-circle w-[64px] h-[64px] sm:w-[72px] sm:h-[72px] rounded-full bg-gradient-to-br from-yellow-100 to-orange-50 flex items-center justify-center mb-5 sm:mb-6 transform-gpu shadow-sm">
+              <Clock className="w-7 h-7 sm:w-8 sm:h-8 text-yellow-500 drop-shadow-sm" />
             </div>
             
-            <div className="space-y-3 z-10 relative">
-              <h3 className="text-lg font-semibold tracking-wide text-brand-saffron uppercase text-[13px]">{t.timeLabel}</h3>
-              <p className="text-xl md:text-2xl font-bold font-serif text-gray-900 leading-snug">{t.timeValue}</p>
+            <div className="space-y-2 sm:space-y-3 z-10 relative">
+              <h3 className="text-xs sm:text-sm font-semibold tracking-[0.2em] text-brand-saffron uppercase">{t.timeLabel}</h3>
+              <p className="text-lg sm:text-xl md:text-2xl font-bold font-serif text-gray-900 leading-snug">{t.timeValue}</p>
             </div>
           </div>
 

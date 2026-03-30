@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { useLanguage } from '../context/LanguageContext';
 import { content } from '../data/content';
 import { Container } from './ui/Container';
+import { X } from 'lucide-react';
 
 export const Navbar = () => {
   const navRef = useRef(null);
@@ -183,14 +184,14 @@ export const Navbar = () => {
         <div className="flex items-center justify-between mx-auto w-full max-w-7xl px-4 md:px-8">
           
           {/* Logo Section */}
-          <a href="#" className="flex items-center gap-4 group z-[60]">
+          <a href="#" className="flex items-center gap-2 sm:gap-4 group z-[60]">
             <div 
               ref={logoRef} 
-              className="flex items-center justify-center w-10 h-10 rounded-full bg-white border border-brand-gold/30 shadow-[0_4px_10px_rgba(255,153,51,0.15)] group-hover:shadow-[0_4px_15px_rgba(255,153,51,0.3)] transition-shadow duration-300"
+              className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white border border-brand-gold/30 shadow-sm transition-shadow duration-300"
             >
-              <span className="text-brand-saffron text-xl leading-none">🕉️</span>
+              <span className="text-brand-saffron text-lg sm:text-xl leading-none">🕉️</span>
             </div>
-            <span className="font-serif text-2xl font-bold tracking-wide text-gray-900 group-hover:text-brand-saffron transition-colors">
+            <span className="font-serif text-xl sm:text-2xl font-bold tracking-wide text-gray-900 group-hover:text-brand-saffron transition-colors">
               Jeeva Gaana
             </span>
           </a>
@@ -267,9 +268,18 @@ export const Navbar = () => {
       {/* Mobile Menu Overlay */}
       <div 
         ref={mobileMenuRef}
-        className="fixed inset-0 z-50 bg-[#FFF8F0]/95 backdrop-blur-xl flex-col items-center justify-start hidden pt-32 pb-8 overflow-y-auto"
+        className="fixed inset-0 z-[100] bg-[#FFF8F0]/98 backdrop-blur-2xl flex-col items-center justify-start hidden pt-32 pb-8 overflow-y-auto"
         style={{ opacity: 0 }}
       >
+        {/* Close Button Inside Menu */}
+        <button
+          onClick={() => setIsOpen(false)}
+          className="absolute top-6 right-6 w-12 h-12 bg-white border border-brand-saffron/20 rounded-full flex items-center justify-center shadow-md text-brand-saffron hover:bg-brand-saffron hover:text-white transition-all duration-300 active:scale-90"
+          aria-label="Close menu"
+        >
+          <X className="w-6 h-6" />
+        </button>
+
         <div className="flex flex-col items-center w-full px-6">
           
           {/* Mobile Language Toggle */}

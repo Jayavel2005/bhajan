@@ -67,7 +67,7 @@ export const Hero = () => {
         {/* Title */}
         <h1 
           ref={el => elementsRef.current[2] = el}
-          className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-serif font-black text-gray-900 leading-[1.15] tracking-tight mb-8 drop-shadow-sm max-w-4xl"
+          className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif font-black text-gray-900 leading-[1.2] tracking-tight mb-6 sm:mb-8 drop-shadow-sm max-w-4xl px-2"
         >
           {t.title}
         </h1>
@@ -75,13 +75,13 @@ export const Hero = () => {
         {/* Subtitle */}
         <p 
           ref={el => elementsRef.current[3] = el}
-          className="text-xl md:text-2xl text-gray-600 font-medium leading-relaxed max-w-2xl mb-8 italic"
+          className="text-lg sm:text-xl md:text-2xl text-gray-600 font-medium leading-relaxed max-w-2xl mb-8 sm:mb-10 italic px-4"
         >
           {t.subtitle}
         </p>
 
         {/* Hero Timer */}
-        <div ref={el => elementsRef.current[6] = el} className="mb-14">
+        <div ref={el => elementsRef.current[6] = el} className="mb-10 sm:mb-14 w-full max-w-sm sm:max-w-none">
           <CountdownTimer size="small" />
         </div>
 

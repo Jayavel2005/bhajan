@@ -92,7 +92,7 @@ export const Prizes = () => {
                   ref={el => cardsRef.current[index] = el}
                   onMouseEnter={e => hoverEffect(e, true)}
                   onMouseLeave={e => hoverEffect(e, false)}
-                  className={`bg-white rounded-[2.5rem] p-10 flex flex-col items-center text-center border transform-gpu relative overflow-hidden h-full
+                  className={`bg-white rounded-[2rem] sm:rounded-[2.5rem] p-8 sm:p-10 flex flex-col items-center text-center border transform-gpu relative overflow-hidden h-full
                     ${prize.featured ? 'shadow-[0_20px_50px_rgba(255,153,51,0.15)] border-brand-saffron/40 ring-4 ring-brand-saffron/10 from-white to-[#fff8f0] bg-gradient-to-b' : 'shadow-md border-brand-saffron/10'}`}
                 >
                   {/* Elegant Top Border Line */}
@@ -102,18 +102,18 @@ export const Prizes = () => {
                   <div className="absolute inset-0 bg-gradient-to-b from-brand-saffron/[0.05] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                   
                   {/* Icon Circle */}
-                  <div className={`w-28 h-28 rounded-full flex items-center justify-center mb-8 relative border transition-transform duration-500 group-hover:scale-110 
+                  <div className={`w-20 h-20 sm:w-28 sm:h-28 rounded-full flex items-center justify-center mb-6 sm:mb-8 relative border transition-transform duration-500 group-hover:scale-110 
                     ${prize.featured ? 'bg-brand-saffron/10 border-brand-saffron/40 shadow-inner' : 'bg-[#FFF8F0] border-brand-saffron/20'}
                   `}>
                     {prize.featured && <div className="absolute inset-0 bg-brand-gold/20 rounded-full blur-md animate-pulse" />}
-                    <IconComponent className={`w-12 h-12 relative z-10 ${prize.featured ? 'text-brand-saffron drop-shadow-md' : 'text-brand-saffron/80'}`} />
+                    <IconComponent className={`w-10 h-10 sm:w-12 sm:h-12 relative z-10 ${prize.featured ? 'text-brand-saffron drop-shadow-md' : 'text-brand-saffron/80'}`} />
                   </div>
                   
-                  <h3 className={`font-bold text-gray-800 mb-4 tracking-wide uppercase ${prize.featured ? 'text-2xl text-brand-saffron' : 'text-xl'}`}>{prize.title}</h3>
-                  <div className={`h-[2px] bg-brand-saffron/20 mb-8 rounded-full ${prize.featured ? 'w-16' : 'w-12'}`} />
+                  <h3 className={`font-bold text-gray-800 mb-3 sm:mb-4 tracking-wide uppercase ${prize.featured ? 'text-xl sm:text-2xl text-brand-saffron' : 'text-lg sm:text-xl'}`}>{prize.title}</h3>
+                  <div className={`h-[2px] bg-brand-saffron/20 mb-6 sm:mb-8 rounded-full ${prize.featured ? 'w-16' : 'w-12'}`} />
                   
                   <p className={`font-black text-transparent bg-clip-text bg-gradient-to-r from-brand-saffron to-orange-600 mt-auto
-                    ${prize.featured ? 'text-5xl md:text-6xl' : 'text-4xl md:text-5xl'}
+                    ${prize.featured ? 'text-4xl sm:text-5xl md:text-6xl' : 'text-3xl sm:text-4xl md:text-5xl'}
                   `}>
                     {prize.amount}
                   </p>

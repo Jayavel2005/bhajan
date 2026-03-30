@@ -18,6 +18,10 @@ import { Location } from "./components/Location";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
 import { FloatingBackground } from "./components/ui/FloatingBackground";
+import { ScrollToTop } from "./components/ui/ScrollToTop";
+import { Divider } from "./components/ui/Divider";
+import { Preloader } from "./components/ui/Preloader";
+import { useState } from "react";
 
 // Translation Wrapper for cross-fade transition
 const ContentWrapper = ({ children }) => {
@@ -36,30 +40,50 @@ const ContentWrapper = ({ children }) => {
 };
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
   return (
     <LanguageProvider>
       <div className="min-h-screen bg-[#FFF8F0] selection:bg-brand-saffron/30 selection:text-brand-saffron overflow-x-hidden font-sans text-gray-900 w-full relative">
+        {loading && <Preloader onFinish={() => setLoading(false)} />}
+        
         <FloatingBackground />
         
         <Navbar />
 
         <ContentWrapper>
-          <main className="w-full">
+          <main 
+            id="main-app"
+            style={{ opacity: loading ? 0 : 1, transform: loading ? 'translateY(20px)' : 'translateY(0)' }}
+            className={`w-full transition-all duration-1000 ease-out`}
+          >
             <Hero />
             <Intro />
+            <Divider />
             <EventDetails />
+            <Divider />
             <Prizes />
+            <Divider />
             <Eligibility />
             <Format />
+            <Divider />
             <Rules />
             <Conditions />
+            <Divider />
             <Registration />
+            <Divider />
             <Location />
+            <Divider />
             <Contact />
           </main>
         </ContentWrapper>
         
-        <Footer />
+        {!loading && (
+          <>
+            <Footer />
+            <ScrollToTop />
+          </>
+        )}
       </div>
     </LanguageProvider>
   );
