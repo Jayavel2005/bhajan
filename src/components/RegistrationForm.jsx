@@ -40,6 +40,7 @@ const formContent = {
 const RegistrationForm = () => {
   const [lang, setLang] = useState("ta");
   const t = formContent[lang];
+  const [isSending, setIsSending] = useState(false);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -59,7 +60,7 @@ const RegistrationForm = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     if (new Date().getTime() > targetDate) {
@@ -67,8 +68,11 @@ const RegistrationForm = () => {
       return;
     }
 
-    const whatsappNumber = "+919790482900";
-    
+    setIsSending(true);
+
+    const primaryNumber = import.meta.env.VITE_WHATSAPP_NUMBER_PRIMARY || "917373800143";
+    const secondaryNumber = import.meta.env.VITE_WHATSAPP_NUMBER_SECONDARY || "919790482900";
+
     // Construct message based on language
     let message = "";
     if (lang === 'ta') {
@@ -78,19 +82,40 @@ const RegistrationForm = () => {
     }
 
     const encodedMessage = encodeURIComponent(message);
-    const url = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
     
-    window.open(url, "_blank");
+    // 1. Open Primary Number
+    window.open(`https://wa.me/${primaryNumber}?text=${encodedMessage}`, "_blank");
+
+    // 2. Wait and open Secondary Number
+    setTimeout(() => {
+      window.open(`https://wa.me/${secondaryNumber}?text=${encodedMessage}`, "_blank");
+      setIsSending(false);
+    }, 1500);
   };
 
   return (
     <div className="w-full max-w-lg mx-auto bg-white rounded-[2rem] shadow-2xl overflow-hidden relative border border-brand-saffron/10 group">
       
+      {/* Sequential Sending Notice Overlay */}
+      {isSending && (
+        <div className="absolute inset-0 z-50 bg-white/90 backdrop-blur-sm flex flex-col items-center justify-center p-8 text-center animate-in fade-in duration-300">
+           <div className="w-16 h-16 border-4 border-brand-saffron/20 border-t-brand-saffron rounded-full animate-spin mb-6" />
+           <h4 className="text-xl font-serif font-black text-gray-900 mb-2">
+             {lang === 'ta' ? 'பதிவு செய்யப்படுகிறது...' : 'Registering...'}
+           </h4>
+           <p className="text-sm text-gray-500 font-medium leading-relaxed">
+             {lang === 'ta' 
+               ? 'இரு ஒருங்கிணைப்பாளர்களுக்கும் WhatsApp மூலம் தகவல் அனுப்பப்படும். தயவுசெய்து காத்திருக்கவும்.' 
+               : 'WhatsApp will open for both organizers sequentially. Please wait a moment.'}
+           </p>
+        </div>
+      )}
+
       {/* Decorative Top Bar */}
       <div className="h-2 w-full bg-gradient-to-r from-brand-saffron via-brand-gold to-brand-saffron opacity-80" />
 
       {/* Language Toggle */}
-      {!isPastDeadline && (
+      {!isPastDeadline && !isSending && (
         <div className="absolute top-6 right-6 z-10">
           <button 
             onClick={(e) => {
