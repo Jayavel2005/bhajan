@@ -77,7 +77,9 @@ export const content = {
       title: "முக்கிய நிபந்தனைகள்",
       items: [
         "நடுவர் தீர்ப்பே இறுதியானது.",
-        "சம மதிப்பெண் பெறும் பட்சத்தில் டாஸ் அல்லது மீண்டும் போட்டி நடத்தப்படும்."
+        "சம மதிப்பெண் பெறும் பட்சத்தில் டாஸ் அல்லது மீண்டும் போட்டி நடத்தப்படும்.",
+        "போட்டிக்கு அரைமணி நேரம் முன்பாக வரவேண்டும்.",
+        "போக்குவரத்து வசதிகள் போட்டியில் பங்கு பெரும் பஜனை பாத்துக்கொள்ள வேண்டும், நிர்வாகம் எந்த பொறுப்பும் ஏற்காது."
       ]
     },
     registration: {
@@ -180,7 +182,9 @@ export const content = {
       title: "Important Conditions",
       items: [
         "Judges' decision will be final.",
-        "In case of a tie, a toss or a tie-breaker round will be conducted."
+        "In case of a tie, a toss or a tie-breaker round will be conducted.",
+        "Participants must arrive half an hour before the competition.",
+        "Transportation must be arranged by the participating groups; the management is not responsible."
       ]
     },
     registration: {
