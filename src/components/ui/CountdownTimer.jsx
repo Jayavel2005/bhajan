@@ -7,7 +7,6 @@ export const CountdownTimer = ({ size = 'large' }) => {
   const t = content[language].timer;
 
   const calculateTimeLeft = () => {
-    // Event specific Date: April 12, 2026
     const targetDate = new Date('2026-04-12T23:59:59').getTime();
     const now = new Date().getTime();
     const difference = targetDate - now;
@@ -26,43 +25,48 @@ export const CountdownTimer = ({ size = 'large' }) => {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft());
-    }, 1000);
+    const timer = setInterval(() => setTimeLeft(calculateTimeLeft()), 1000);
     return () => clearInterval(timer);
   }, []);
 
   if (!timeLeft) {
     return (
-      <div className={`inline-flex items-center justify-center px-6 py-3 bg-red-50 border border-red-200 rounded-lg shadow-sm ${size === 'small' ? 'mt-4' : 'mt-8'}`}>
-        <span className="text-red-600 font-bold tracking-wide">{t.ended}</span>
+      <div className="inline-flex items-center justify-center px-5 py-3 bg-red-50 border border-red-200 rounded-xl shadow-sm">
+        <span className="text-red-600 font-bold tracking-wide text-sm sm:text-base">{t.ended}</span>
       </div>
     );
   }
 
   const isSmall = size === 'small';
-
   const timeBlocks = [
-    { label: t.days, value: timeLeft.days },
-    { label: t.hours, value: timeLeft.hours },
+    { label: t.days,    value: timeLeft.days    },
+    { label: t.hours,   value: timeLeft.hours   },
     { label: t.minutes, value: timeLeft.minutes },
     { label: t.seconds, value: timeLeft.seconds },
   ];
 
   return (
-    <div className={`flex flex-col items-center justify-center ${isSmall ? 'gap-4 mt-8 mb-4' : 'gap-5 mt-8 mb-4'}`}>
-      <div className={`font-bold tracking-wide text-brand-saffron ${isSmall ? 'text-xs uppercase opacity-80 mb-1' : 'text-lg uppercase'}`}>
+    <div className={`flex flex-col items-center justify-center ${isSmall ? 'gap-3 mt-6 mb-2' : 'gap-4 mt-6 mb-2'}`}>
+      
+      {/* Label */}
+      <span className={`font-bold tracking-widest text-brand-saffron uppercase ${isSmall ? 'text-[10px] sm:text-xs' : 'text-xs sm:text-sm'}`}>
         {t.registerBy}
-      </div>
-      <div className={`flex items-center justify-center ${isSmall ? 'gap-2 md:gap-3' : 'gap-3 md:gap-6'}`}>
+      </span>
+
+      {/* Time blocks */}
+      <div className={`flex items-start justify-center ${isSmall ? 'gap-2 sm:gap-3' : 'gap-3 sm:gap-5 lg:gap-7'}`}>
         {timeBlocks.map((block, i) => (
           <div key={i} className="flex flex-col items-center">
-            <div className={`flex items-center justify-center bg-white border border-brand-saffron/20 rounded-xl shadow-sm text-gray-800 tabular-nums
-              ${isSmall ? 'w-[42px] h-[46px] md:w-12 md:h-14 text-lg md:text-xl font-bold bg-gradient-to-b from-white to-[#FFF8F0]' : 'w-[60px] h-[70px] md:w-24 md:h-28 text-3xl md:text-5xl font-black rounded-2xl drop-shadow-md bg-gradient-to-b from-white to-amber-50'}
-            `}>
+            <div className={`flex items-center justify-center bg-white border border-brand-saffron/20 rounded-xl sm:rounded-2xl shadow-sm text-gray-800 tabular-nums font-black
+              ${isSmall
+                ? 'w-[46px] h-[50px] sm:w-14 sm:h-16 text-xl sm:text-2xl'
+                : 'w-[62px] h-[68px] sm:w-20 sm:h-24 lg:w-24 lg:h-28 text-2xl sm:text-4xl lg:text-5xl'}
+              bg-gradient-to-b from-white to-[#FFF8F0]`}
+            >
               {String(block.value).padStart(2, '0')}
             </div>
-            <span className={`text-gray-500 font-semibold ${isSmall ? 'text-[9px] md:text-[10px] mt-1.5 uppercase tracking-wider' : 'text-xs md:text-sm mt-3 uppercase tracking-widest'}`}>
+            <span className={`text-gray-500 font-semibold uppercase tracking-widest mt-2
+              ${isSmall ? 'text-[8px] sm:text-[10px]' : 'text-[9px] sm:text-[10px] lg:text-xs'}`}>
               {block.label}
             </span>
           </div>
