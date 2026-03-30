@@ -43,23 +43,23 @@ export const Hero = () => {
   return (
     <section 
       ref={sectionRef}
-      className="relative flex flex-col items-center justify-center text-center pt-16 lg:pt-24 pb-12 overflow-hidden bg-transparent" 
+      className="relative flex flex-col items-center justify-center text-center pt-24 sm:pt-28 lg:pt-36 pb-12 overflow-hidden bg-transparent" 
     >
       <div className="relative z-10 flex flex-col items-center justify-center w-full px-4">
         {/* Central Om / Top Ornament */}
         <div 
           ref={el => elementsRef.current[0] = el}
-          className="w-20 h-20 bg-brand-saffron/10 rounded-full flex items-center justify-center mb-8 border border-brand-saffron/30 shadow-sm"
+          className="w-20 h-20 bg-brand-saffron/10 rounded-full flex items-center justify-center mb-10 sm:mb-12 border border-brand-saffron/30 shadow-sm"
         >
           <span className="text-4xl text-brand-saffron drop-shadow-md">🕉️</span>
         </div>
 
         {/* Date & Location Badges */}
-        <div ref={el => elementsRef.current[1] = el} className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center items-center w-full mb-8">
-          <div className="inline-block px-6 py-2 rounded-full border border-brand-saffron/40 bg-gradient-to-r from-brand-saffron/5 to-orange-100/30 text-brand-saffron text-sm tracking-widest uppercase font-bold shadow-sm">
+        <div ref={el => elementsRef.current[1] = el} className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-6 justify-center items-center w-full mb-12 sm:mb-16">
+          <div className="inline-block px-6 py-2.5 rounded-full border border-brand-saffron/40 bg-gradient-to-r from-brand-saffron/5 to-orange-100/30 text-brand-saffron text-sm tracking-widest uppercase font-bold shadow-sm">
             {t.date}
           </div>
-          <div className="inline-block px-6 py-2 rounded-full border border-brand-saffron/40 bg-gradient-to-r from-orange-100/30 to-brand-saffron/5 text-brand-saffron text-sm font-bold tracking-wide shadow-sm">
+          <div className="inline-block px-6 py-2.5 rounded-full border border-brand-saffron/40 bg-gradient-to-r from-orange-100/30 to-brand-saffron/5 text-brand-saffron text-sm font-bold tracking-wide shadow-sm">
             {t.location}
           </div>
         </div>
@@ -67,7 +67,7 @@ export const Hero = () => {
         {/* Title */}
         <h1 
           ref={el => elementsRef.current[2] = el}
-          className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif font-black text-gray-900 leading-[1.2] tracking-tight mb-6 sm:mb-8 drop-shadow-sm max-w-4xl px-2"
+          className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif font-black text-gray-900 leading-[1.3] tracking-tight mb-8 sm:mb-12 drop-shadow-sm max-w-4xl px-2"
         >
           {t.title}
         </h1>
@@ -75,13 +75,13 @@ export const Hero = () => {
         {/* Subtitle */}
         <p 
           ref={el => elementsRef.current[3] = el}
-          className="text-lg sm:text-xl md:text-2xl text-gray-600 font-medium leading-relaxed max-w-2xl mb-8 sm:mb-10 italic px-4"
+          className="text-lg sm:text-xl md:text-2xl text-gray-600 font-medium leading-relaxed max-w-2xl mb-10 sm:mb-14 italic px-4"
         >
           {t.subtitle}
         </p>
 
         {/* Hero Timer */}
-        <div ref={el => elementsRef.current[6] = el} className="mb-10 sm:mb-14 w-full max-w-sm sm:max-w-none">
+        <div ref={el => elementsRef.current[6] = el} className="mb-14 sm:mb-20 w-full max-w-sm sm:max-w-none">
           <CountdownTimer size="small" />
         </div>
 

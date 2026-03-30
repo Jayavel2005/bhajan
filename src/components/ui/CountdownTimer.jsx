@@ -50,8 +50,8 @@ export const CountdownTimer = ({ size = 'large' }) => {
   ];
 
   return (
-    <div className={`flex flex-col items-center justify-center ${isSmall ? 'gap-3 mt-4 mb-2' : 'gap-5 mt-8 mb-4'}`}>
-      <div className={`font-bold tracking-wide text-brand-saffron ${isSmall ? 'text-xs uppercase opacity-80' : 'text-lg uppercase'}`}>
+    <div className={`flex flex-col items-center justify-center ${isSmall ? 'gap-4 mt-8 mb-4' : 'gap-5 mt-8 mb-4'}`}>
+      <div className={`font-bold tracking-wide text-brand-saffron ${isSmall ? 'text-xs uppercase opacity-80 mb-1' : 'text-lg uppercase'}`}>
         {t.registerBy}
       </div>
       <div className={`flex items-center justify-center ${isSmall ? 'gap-2 md:gap-3' : 'gap-3 md:gap-6'}`}>
