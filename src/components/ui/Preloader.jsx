@@ -2,12 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 
 const instruments = [
-  { icon: "🎹", name: "Harmonium", x: 0, y: -160, action: "Tuning keys..." },
-  { icon: "🥁", name: "Tabla", x: 140, y: -80, action: "Tightening skins..." },
-  { icon: "🪘", name: "Dholak", x: 140, y: 80, action: "Balancing bass..." },
-  { icon: "🔔", name: "Manjira", x: 0, y: 160, action: "Polishing cymbals..." },
-  { icon: "🪇", name: "Kartal", x: -140, y: 80, action: "Syncing rhythm..." },
-  { icon: "🎋", name: "Bansuri", x: -140, y: -80, action: "Clearing notes..." }
+  { icon: "🎹", name: "Harmonium", x: 0, y: -1 },
+  { icon: "🥁", name: "Tabla", x: 0.85, y: -0.5 },
+  { icon: "🪘", name: "Dholak", x: 0.85, y: 0.5 },
+  { icon: "🔔", name: "Manjira", x: 0, y: 1 },
+  { icon: "🪇", name: "Kartal", x: -0.85, y: 0.5 },
+  { icon: "🎋", name: "Bansuri", x: -0.85, y: -0.5 }
 ];
 
 export const Preloader = ({ onFinish }) => {
@@ -19,17 +19,26 @@ export const Preloader = ({ onFinish }) => {
   const [loadingComplete, setLoadingComplete] = useState(false);
   const [statusText, setStatusText] = useState("Invoking Divine Melodies...");
 
+  // Responsive radius calculation
+  const [radius, setRadius] = useState(window.innerWidth < 640 ? 110 : 160);
+
   useEffect(() => {
+    const handleResize = () => setRadius(window.innerWidth < 640 ? 110 : 160);
+    window.addEventListener('resize', handleResize);
+
     // Rotation of status texts
     let statusIndex = 0;
     const statusInterval = setInterval(() => {
       statusIndex = (statusIndex + 1) % instruments.length;
-      setStatusText(instruments[statusIndex].action);
-    }, 400);
+      const actions = [
+        "Tuning keys...", "Tightening skins...", "Balancing bass...", 
+        "Polishing cymbals...", "Syncing rhythm...", "Clearing notes..."
+      ];
+      setStatusText(actions[statusIndex]);
+    }, 500);
 
     const tl = gsap.timeline({
       onComplete: () => {
-        // Continuous orbit
         gsap.to(".orbit-container", {
           rotation: 360,
           duration: 25,
@@ -38,7 +47,6 @@ export const Preloader = ({ onFinish }) => {
           transformOrigin: "50% 50%"
         });
 
-        // Vibration effect on strings
         gsap.to(stringsRef.current, {
           strokeWidth: 2,
           opacity: 0.6,
@@ -48,10 +56,9 @@ export const Preloader = ({ onFinish }) => {
           ease: "none"
         });
 
-        // Individual instrument sway
         instrumentsRef.current.forEach((inst, i) => {
           gsap.to(inst, {
-            rotation: i % 2 === 0 ? 10 : -10,
+            rotation: i % 2 === 0 ? 8 : -8,
             duration: 1.5 + Math.random(),
             repeat: -1,
             yoyo: true,
@@ -77,18 +84,18 @@ export const Preloader = ({ onFinish }) => {
       { 
         scale: 1, 
         opacity: 1, 
-        x: (i) => instruments[i].x, 
-        y: (i) => instruments[i].y, 
+        x: (i) => instruments[i].x * radius, 
+        y: (i) => instruments[i].y * radius, 
         duration: 0.6, 
-        stagger: 0.1, 
+        stagger: 0.08, 
         ease: "back.out(1.2)" 
       },
       "-=0.3"
     );
 
     tl.fromTo(stringsRef.current,
-      { strokeDashoffset: 300, opacity: 0 },
-      { strokeDashoffset: 0, opacity: 0.2, duration: 0.8, stagger: 0.05, ease: "power2.inOut" },
+      { strokeDashoffset: 400, opacity: 0 },
+      { strokeDashoffset: 0, opacity: 0.15, duration: 0.8, stagger: 0.04, ease: "power2.inOut" },
       "-=0.8"
     );
 
@@ -96,61 +103,59 @@ export const Preloader = ({ onFinish }) => {
     gsap.to(".center-glow", {
       scale: 1.4,
       opacity: 0,
-      duration: 2,
+      duration: 1.5,
       repeat: -1,
       ease: "power2.out"
     });
 
-    // SOUND PARTICLES
     const noteInterval = setInterval(() => {
       const note = document.createElement("div");
       note.innerText = ["🎶", "🎵", "✨", "🎼", "🌸", "🕉️"][Math.floor(Math.random() * 6)];
       note.style.position = "absolute";
-      note.style.fontSize = "24px";
+      note.style.fontSize = "20px";
       note.style.pointerEvents = "none";
-      note.style.filter = "drop-shadow(0 0 10px rgba(255,153,51,0.5))";
+      note.style.filter = "drop-shadow(0 0 8px rgba(255,153,51,0.4))";
       notesContainerRef.current?.appendChild(note);
 
       gsap.fromTo(note, 
         { x: 0, y: 0, opacity: 1, scale: 0.3 }, 
         { 
-          x: "random(-300, 300)", 
-          y: "random(-300, 300)", 
+          x: "random(-200, 200)", 
+          y: "random(-200, 200)", 
           opacity: 0, 
           scale: 1.2, 
           rotation: "random(-180, 180)",
-          duration: 3, 
-          ease: "power1.out",
+          duration: 2.5, 
+          ease: "cos.out",
           onComplete: () => note.remove()
         }
       );
     }, 400);
 
     return () => {
+      window.removeEventListener('resize', handleResize);
       clearInterval(noteInterval);
       clearInterval(statusInterval);
     };
-  }, []);
+  }, [radius]);
 
   useEffect(() => {
     if (loadingComplete) {
       const exitTl = gsap.timeline({ onComplete: onFinish });
-      
       exitTl.to([instrumentsRef.current, centerpieceRef.current, stringsRef.current], {
         scale: 0.1,
         opacity: 0,
         rotation: 45,
-        duration: 0.8,
+        duration: 0.6,
         stagger: 0.02,
         ease: "power2.in"
       });
-
       exitTl.to(containerRef.current, {
         opacity: 0,
         backgroundColor: "white",
-        duration: 0.6,
+        duration: 0.5,
         ease: "power4.inOut"
-      }, "-=0.3");
+      }, "-=0.2");
     }
   }, [loadingComplete, onFinish]);
 
@@ -159,64 +164,56 @@ export const Preloader = ({ onFinish }) => {
       ref={containerRef}
       className="fixed inset-0 z-[9999] bg-[#FFFBF5] flex items-center justify-center overflow-hidden"
     >
-      <div className="relative w-full h-full flex items-center justify-center">
+      <div className="relative w-full h-full flex items-center justify-center scale-90 sm:scale-100">
         
         {/* Divine Background Elements */}
         <div className="absolute inset-0 flex items-center justify-center opacity-30 pointer-events-none">
-          <div className="w-[100vw] h-[100vw] bg-radial-gradient from-brand-saffron/20 to-transparent blur-[120px]" />
+          <div className="w-[100vw] h-[100vw] bg-radial-gradient from-brand-saffron/10 to-transparent blur-[80px]" />
         </div>
 
-        {/* Dynamic Nodes Container */}
         <div ref={notesContainerRef} className="absolute inset-0 flex items-center justify-center pointer-events-none" />
 
         <div className="relative orbit-container w-0 h-0 flex items-center justify-center">
           
-          {/* SVG Connection Strings */}
+          {/* Connection Strings */}
           <svg className="absolute w-[600px] h-[600px] pointer-events-none z-0" viewBox="-300 -300 600 600">
             {instruments.map((inst, i) => (
               <line
                 key={i}
                 ref={el => stringsRef.current[i] = el}
                 x1="0" y1="0"
-                x2={inst.x} y2={inst.y}
+                x2={inst.x * radius} y2={inst.y * radius}
                 stroke="#FF9933"
                 strokeWidth="1"
-                strokeDasharray="5,5"
+                strokeDasharray="4,4"
                 opacity="0"
               />
             ))}
           </svg>
 
-          {/* Centerpiece: Divine Drum */}
-          <div 
-            ref={centerpieceRef}
-            className="absolute z-20 flex items-center justify-center"
-          >
-            <div className="relative w-32 h-32 sm:w-40 sm:h-40 flex items-center justify-center">
+          {/* Centerpiece */}
+          <div ref={centerpieceRef} className="absolute z-20 flex items-center justify-center">
+            <div className="relative w-28 h-28 sm:w-40 sm:h-40 flex items-center justify-center">
               <div className="center-glow absolute inset-0 bg-brand-saffron/20 rounded-full blur-xl" />
-              <div className="absolute inset-0 border-2 border-brand-saffron/10 rounded-full animate-[spin_10s_linear_infinite]" />
-              
-              <div className="w-24 h-24 sm:w-32 sm:h-32 bg-white rounded-full shadow-[0_20px_60px_rgba(255,153,51,0.25)] flex items-center justify-center border-2 border-brand-saffron/20 relative z-10 overflow-hidden">
-                 <div className="absolute inset-0 bg-gradient-to-tr from-brand-saffron/5 to-transparent" />
-                 <span className="text-6xl sm:text-7xl drop-shadow-2xl select-none leading-none">🪘</span>
+              <div className="w-20 h-20 sm:w-32 sm:h-32 bg-white rounded-full shadow-[0_15px_40px_rgba(255,153,51,0.2)] flex items-center justify-center border border-brand-saffron/15 relative z-10">
+                 <span className="text-5xl sm:text-7xl drop-shadow-xl select-none">🪘</span>
               </div>
             </div>
           </div>
 
-          {/* Orbiting Instruments */}
+          {/* Instruments */}
           {instruments.map((inst, i) => (
             <div
               key={i}
               ref={el => instrumentsRef.current[i] = el}
               className="absolute z-10 flex flex-col items-center justify-center group"
-              style={{ width: "100px", height: "100px" }}
+              style={{ width: radius < 120 ? "70px" : "90px", height: radius < 120 ? "70px" : "90px" }}
             >
-              <div className="relative w-16 h-16 sm:w-20 sm:h-20 bg-white shadow-xl rounded-2xl border border-brand-saffron/10 flex items-center justify-center group-hover:border-brand-saffron/50 transition-all duration-300">
-                <span className="text-3xl sm:text-4xl drop-shadow-md select-none transform group-hover:scale-125 transition-transform duration-500">{inst.icon}</span>
-                <div className="absolute -inset-1 bg-brand-saffron/5 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="relative w-14 h-14 sm:w-20 sm:h-20 bg-white shadow-lg rounded-xl sm:rounded-2xl border border-brand-saffron/10 flex items-center justify-center group-hover:border-brand-saffron/40 transition-all duration-300">
+                <span className="text-2xl sm:text-4xl drop-shadow-md select-none">{inst.icon}</span>
               </div>
-              <div className="mt-3 overflow-hidden">
-                <span className="block text-[8px] sm:text-[9px] font-black text-brand-saffron uppercase tracking-[0.3em] bg-brand-saffron/5 px-3 py-1 rounded-full whitespace-nowrap">
+              <div className="mt-2 overflow-hidden">
+                <span className="block text-[7px] sm:text-[9px] font-black text-brand-saffron uppercase tracking-[0.2em] bg-brand-saffron/5 px-2 py-0.5 rounded-full">
                   {inst.name}
                 </span>
               </div>
@@ -225,41 +222,29 @@ export const Preloader = ({ onFinish }) => {
 
         </div>
 
-        {/* spiritual status Overlay */}
-        <div className="absolute bottom-20 left-0 right-0 text-center px-6">
-           <div className="flex flex-col items-center gap-6 max-w-xs mx-auto">
-              <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-brand-saffron to-transparent opacity-40" />
-              
-              <div className="space-y-3">
-                 <h2 className="text-3xl font-serif font-black text-gray-900 tracking-[0.15em] uppercase drop-shadow-sm">
-                   Jeeva Gaana
+        {/* Status Overlay */}
+        <div className="absolute bottom-[10%] sm:bottom-[15%] left-0 right-0 text-center px-6">
+           <div className="flex flex-col items-center gap-4 max-w-xs mx-auto">
+              <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-brand-saffron/30 to-transparent" />
+              <div className="space-y-2">
+                 <h2 className="text-2xl sm:text-3xl font-serif font-black text-gray-900 tracking-wider">
+                   JEEVA GAANA
                  </h2>
-                 <div className="relative h-4 flex items-center justify-center">
-                    <span className="text-[10px] sm:text-[11px] font-black text-brand-saffron/70 uppercase tracking-[0.5em] animate-pulse">
-                      {statusText}
-                    </span>
-                 </div>
+                 <span className="block text-[9px] sm:text-[11px] font-black text-brand-saffron/60 uppercase tracking-[0.4em] animate-pulse">
+                   {statusText}
+                 </span>
               </div>
-
-              <div className="flex gap-1.5">
+              <div className="flex gap-1">
                  {[...Array(3)].map((_, i) => (
-                   <div 
-                     key={i} 
-                     className="w-1.5 h-1.5 rounded-full bg-brand-saffron/20 animate-bounce"
-                     style={{ animationDelay: `${i * 0.1}s` }}
-                   />
+                   <div key={i} className="w-1 h-1 rounded-full bg-brand-saffron/20 animate-bounce" style={{ animationDelay: `${i * 0.1}s` }} />
                  ))}
               </div>
            </div>
         </div>
       </div>
-
-      {/* Om Corner Markers */}
-      <div className="absolute inset-12 border border-brand-saffron/5 rounded-3xl pointer-events-none" />
-      <div className="absolute top-12 left-12 text-2xl opacity-10 select-none">🕉️</div>
-      <div className="absolute bottom-12 right-12 text-2xl opacity-10 select-none">🕉️</div>
     </div>
   );
 };
+
 
 
