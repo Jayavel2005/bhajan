@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { useLanguage } from '../context/LanguageContext';
 import { content } from '../data/content';
 import { Container } from './ui/Container';
+import { SectionTitle } from './ui/SectionTitle';
 
 export const Intro = () => {
   const { language } = useLanguage();
@@ -26,6 +27,7 @@ export const Intro = () => {
   return (
     <section id="intro" className="py-16 sm:py-20 lg:py-24 bg-white relative border-t border-brand-saffron/10">
       <Container>
+        <SectionTitle title={t.title} />
         <div ref={sectionRef} className="max-w-3xl mx-auto text-center space-y-5 sm:space-y-7">
           <h2 className="text-2xl sm:text-3xl md:text-4xl text-brand-saffron font-semibold opacity-0 leading-snug">
             {t.greeting}

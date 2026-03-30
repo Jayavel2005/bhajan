@@ -4,6 +4,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { content } from '../data/content';
 import { Container } from './ui/Container';
 import { Trophy, Medal, Award } from 'lucide-react';
+import { SectionTitle } from './ui/SectionTitle';
 
 export const Prizes = () => {
   const { language } = useLanguage();
@@ -39,17 +40,7 @@ export const Prizes = () => {
       <div className="absolute bottom-0 left-0 w-[250px] sm:w-[400px] h-[250px] sm:h-[400px] bg-brand-gold/5 rounded-full blur-[100px] pointer-events-none" />
 
       <Container>
-        {/* Header */}
-        <div className="text-center mb-10 sm:mb-14 relative z-20">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-black tracking-tight text-gray-900 mb-3">
-            {t.title}
-          </h2>
-          <div className="flex items-center justify-center gap-4">
-            <div className="h-[2px] w-10 bg-gradient-to-r from-transparent to-brand-saffron/50" />
-            <span className="text-brand-saffron text-xl">✨</span>
-            <div className="h-[2px] w-10 bg-gradient-to-l from-transparent to-brand-saffron/50" />
-          </div>
-        </div>
+        <SectionTitle title={t.title} />
 
         {/* Prize Cards — stack on mobile, 3-col on desktop with center highlight */}
         <div ref={sectionRef} className="flex flex-col sm:grid sm:grid-cols-3 gap-5 sm:gap-6 max-w-4xl mx-auto relative z-10">

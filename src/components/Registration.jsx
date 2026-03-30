@@ -5,6 +5,7 @@ import { content } from '../data/content';
 import { Container } from './ui/Container';
 import { Button } from './ui/Button';
 import { CountdownTimer } from './ui/CountdownTimer';
+import { SectionTitle } from './ui/SectionTitle';
 
 export const Registration = () => {
   const { language } = useLanguage();
@@ -31,6 +32,7 @@ export const Registration = () => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] bg-brand-gold/10 blur-[120px] rounded-full pointer-events-none" />
 
       <Container>
+        <SectionTitle title={t.title} />
         <div ref={sectionRef} className="max-w-2xl mx-auto flex justify-center relative z-10">
           <div
             ref={cardRef}

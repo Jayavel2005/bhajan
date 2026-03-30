@@ -4,6 +4,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { content } from '../data/content';
 import { Container } from './ui/Container';
 import { AlertCircle } from 'lucide-react';
+import { SectionTitle } from './ui/SectionTitle';
 
 export const Conditions = () => {
   const { language } = useLanguage();
@@ -29,11 +30,7 @@ export const Conditions = () => {
     <section className="py-16 sm:py-20 lg:py-24 bg-[#FFF8F0] relative overflow-hidden border-t border-brand-saffron/10">
       <Container>
         <div className="max-w-3xl mx-auto flex flex-col items-center">
-          {/* Header */}
-          <div className="flex items-center gap-3 mb-8 sm:mb-10">
-            <AlertCircle className="w-6 h-6 sm:w-8 sm:h-8 text-brand-saffron shrink-0" />
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif text-gray-900 font-bold">{t.title}</h2>
-          </div>
+          <SectionTitle title={t.title} />
 
           <div ref={sectionRef} className="w-full bg-orange-50/30 rounded-2xl sm:rounded-3xl p-6 sm:p-10 shadow-sm border border-brand-saffron/10 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-[150px] h-[150px] bg-brand-saffron/5 rounded-full blur-[60px] pointer-events-none" />
