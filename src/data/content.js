@@ -98,7 +98,7 @@ export const content = {
       title: "இடம்",
       templeName: "பரமசிவன் திருக்கோவில்",
       address: "பூரண்டாம்பாளையம், தமிழ்நாடு 641669",
-      cta: "📍 வழி பார்க்க"
+      cta: "வழி பார்க்க"
     },
     footer: "© 2026 ஜீவ கான இசை விழா. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை."
   },
@@ -201,7 +201,7 @@ export const content = {
       title: "Location",
       templeName: "Paramasivan Temple",
       address: "Poorandampalayam, Tamil Nadu 641669",
-      cta: "📍 Get Directions"
+      cta: "Get Directions"
     },
     footer: "© 2026 Jeeva Gaana Isai Vizha. All Rights Reserved."
   }
