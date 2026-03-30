@@ -9,6 +9,7 @@ export const content = {
     },
     hero: {
       title: "ஜீவ கான இசை விழா",
+      highlight: "பிரம்மாண்ட பஜனை போட்டி",
       subtitle: "பஜனை மற்றும் நாமசங்கீர்த்தனத்தின் ஒரு தெய்வீக பயணம்",
       date: "📅 மே 1, 2026",
       location: "🛕 பூரண்டாம் பாளையம் பரமசிவன் திருக்கோவில்",
@@ -114,6 +115,7 @@ export const content = {
     },
     hero: {
       title: "Jeeva Gaana Isai Vizha",
+      highlight: "Grand Bhajan Competition",
       subtitle: "A Divine Journey of Bhajans & Namasankeerthanam",
       date: "📅 May 1, 2026",
       location: "🛕 Poorandam Palayam Paramasivan Temple",

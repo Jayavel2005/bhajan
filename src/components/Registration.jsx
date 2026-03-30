@@ -1,11 +1,11 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { useLanguage } from '../context/LanguageContext';
 import { content } from '../data/content';
 import { Container } from './ui/Container';
-import { Button } from './ui/Button';
 import { CountdownTimer } from './ui/CountdownTimer';
 import { SectionTitle } from './ui/SectionTitle';
+import RegistrationForm from './RegistrationForm';
 
 export const Registration = () => {
   const { language } = useLanguage();
@@ -17,12 +17,12 @@ export const Registration = () => {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         gsap.fromTo(cardRef.current,
-          { scale: 0.96, y: 30, opacity: 0 },
-          { scale: 1, y: 0, opacity: 1, duration: 0.8, ease: 'back.out(1.2)' }
+          { x: 30, opacity: 0 },
+          { x: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }
         );
         observer.disconnect();
       }
-    }, { threshold: 0.2 });
+    }, { threshold: 0.1 });
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
@@ -33,46 +33,81 @@ export const Registration = () => {
 
       <Container>
         <SectionTitle title={t.title} />
-        <div ref={sectionRef} className="max-w-2xl mx-auto flex justify-center relative z-10">
-          <div
-            ref={cardRef}
-            className="w-full bg-white rounded-3xl sm:rounded-[2.5rem] p-6 sm:p-10 lg:p-14 text-center shadow-[0_20px_50px_rgba(255,153,51,0.1)] border border-brand-saffron/20 opacity-0 relative overflow-hidden"
-          >
-            {/* Corner Om */}
-            <div className="absolute -top-8 -right-8 text-brand-saffron opacity-10 text-[5rem] sm:text-[8rem] select-none pointer-events-none rotate-12 leading-none">
-              🕉️
-            </div>
 
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-gray-900 mb-7 sm:mb-9 leading-tight">
-              {t.title}
-            </h2>
+        <div className="max-w-5xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-8 lg:gap-16 items-center">
+          
+          {/* Info Side (Left) */}
+          <div ref={sectionRef} className="space-y-6 sm:space-y-8 order-2 lg:order-1">
+            <div className="bg-white rounded-3xl p-8 sm:p-10 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)] border border-brand-saffron/10 relative overflow-hidden group hover:shadow-xl transition-shadow duration-500">
+               {/* Decor */}
+              <div className="absolute -top-10 -left-10 w-40 h-40 bg-brand-saffron/5 rounded-full blur-3xl pointer-events-none group-hover:bg-brand-saffron/10 transition-colors" />
+              
+              <div className="space-y-8 relative z-10">
+                {/* Registration Fee */}
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-brand-saffron/10 flex items-center justify-center shrink-0 border border-brand-saffron/20">
+                    <span className="text-xl">💰</span>
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-black text-gray-500 uppercase tracking-widest mb-1">{t.entryLabel}</h4>
+                    <p className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-brand-saffron to-orange-600 leading-tight">
+                      {t.entryValue}
+                    </p>
+                  </div>
+                </div>
 
-            {/* Info Grid — stacked on mobile, 2-col on sm+ */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 sm:mb-10">
-              <div className="bg-[#FFF8F0] rounded-2xl p-4 sm:p-5 border border-brand-saffron/10 shadow-sm active:scale-[0.98] transition-transform">
-                <p className="text-gray-500 text-xs sm:text-sm font-semibold uppercase tracking-wider mb-2">{t.entryLabel}</p>
-                <p className="text-2xl sm:text-3xl font-black text-gray-900">{t.entryValue}</p>
+                {/* Refund Policy */}
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-brand-gold/10 flex items-center justify-center shrink-0 border border-brand-gold/20">
+                    <span className="text-xl">💰</span>
+                  </div>
+                  <div className="relative">
+                    <span className="absolute -top-1 -right-4 px-2 py-0.5 bg-brand-gold text-white text-[8px] font-black uppercase tracking-widest rounded-full">Bonus</span>
+                    <h4 className="text-sm font-black text-gray-500 uppercase tracking-widest mb-1">{t.refundLabel}</h4>
+                    <p className="text-2xl font-bold text-gray-900 leading-tight">
+                      {t.refundValue}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="h-[1px] bg-gradient-to-r from-brand-saffron/30 via-transparent to-transparent" />
+
+                {/* Deadline */}
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-orange-50 flex items-center justify-center shrink-0 border border-orange-200">
+                    <span className="text-xl">🗓️</span>
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-black text-gray-500 uppercase tracking-widest mb-1">Registration Ends</h4>
+                    <p className="text-lg font-bold text-gray-900">{t.lastDate.replace('கடைசி தேதி:', '').replace('Last Date:', '')}</p>
+                  </div>
+                </div>
+
+                {/* Timer */}
+                <div className="pt-2">
+                  <CountdownTimer size="small" />
+                </div>
               </div>
-              <div className="bg-[#FFF8F0] rounded-2xl p-4 sm:p-5 border border-brand-gold/20 shadow-sm relative overflow-hidden active:scale-[0.98] transition-transform">
-                <div className="absolute top-0 right-0 px-2 py-1 bg-brand-gold text-white text-[9px] font-black rounded-bl-xl tracking-wider uppercase">Important</div>
-                <p className="text-gray-500 text-xs sm:text-sm font-semibold uppercase tracking-wider mb-2">{t.refundLabel}</p>
-                <p className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900">{t.refundValue}</p>
+            </div>
+
+            {/* Support/Instruction */}
+            <div className="bg-white/40 backdrop-blur-md rounded-2xl p-6 border border-brand-saffron/5 flex gap-4 ring-1 ring-white/50">
+              <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shrink-0 shadow-sm border border-brand-saffron/10">
+                <span className="text-lg">📢</span>
               </div>
+              <p className="text-[13px] text-gray-600 leading-relaxed font-medium">
+                {language === 'ta' 
+                  ? 'பஜனை போட்டிக்கு தகுதியான நபர்கள் மட்டும் இந்த படிவத்தை பூர்த்தி செய்யவும். மெசேஜ் அனுப்பிய பின் நிர்வாக குழு உங்களை தொடர்பு கொள்ளும்.' 
+                  : 'Only eligible candidates for the Bhajan competition should fill this form. Our management team will contact you after receiving the message.'}
+              </p>
             </div>
-
-            {/* Timer */}
-            <div className="mb-8 sm:mb-10">
-              <CountdownTimer size="large" />
-            </div>
-
-            {/* CTA — full width on mobile */}
-            <button
-              onClick={() => alert('Registration complete')}
-              className="w-full sm:w-auto px-10 sm:px-16 py-4 sm:py-5 rounded-full font-bold text-lg sm:text-xl lg:text-2xl tracking-wide bg-gradient-to-r from-brand-saffron to-brand-gold text-white shadow-lg active:scale-95 transition-all duration-200 focus:outline-none min-h-[52px]"
-            >
-              {t.cta}
-            </button>
           </div>
+
+          {/* Form Side (Right) */}
+          <div ref={cardRef} className="order-1 lg:order-2 opacity-0">
+             <RegistrationForm />
+          </div>
+
         </div>
       </Container>
     </section>
