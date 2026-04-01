@@ -68,9 +68,11 @@ export const content = {
       items: [
         { q: "முன்பதிவு", a: "போட்டியில் கலந்து கொள்ள முன்பதிவு அவசியம்." },
         { q: "மேடை அமைப்பு", a: "2 அணிகள் ஒரே மேடையில் அமர்ந்து பாட வேண்டும்." },
+        { q: "பாடல் வடிவம்", a: "விருத்தம் பாட்டு நாமவளி இருக்க வேண்டும்." },
         { q: "பாடல் வரம்பு", a: "பாடிய பாடலை மீண்டும் பாடக்கூடாது." },
         { q: "உடை நடைமுறை", a: "சரியான கலாச்சார உடை அணிந்து வருவது அவசியம்." },
         { q: "நேரக் கட்டுப்பாடு", a: "நேரத்தை கண்காணிக்க டைமர் பயன்படுத்தப்படும்." },
+        { q: "நேர மாற்றம்", a: "போட்டி நேரம் கூட்டவோ குறைக்கவும் நிர்வாகத்தினருக்கு உரிமை உண்டு." },
         { q: "உணவு", a: "பங்கேற்பாளர்களுக்கு உணவு வழங்கப்படும்." },
       ]
     },
@@ -174,9 +176,11 @@ export const content = {
       items: [
         { q: "Registration", a: "Prior registration is mandatory to participate." },
         { q: "Stage Setup", a: "2 teams will be seated on the same stage." },
+        { q: "Song Format", a: "Performance must include Virutham, Paattu, and Namavali." },
         { q: "Song Repetition", a: "Songs once sung cannot be repeated." },
         { q: "Dress Code", a: "Traditional cultural attire is strictly required." },
         { q: "Time Tracking", a: "A timer will be used to monitor performance duration." },
+        { q: "Time Adjustment", a: "The management reserves the right to increase or decrease the competition time." },
         { q: "Food", a: "Food will be provided for all participants." },
       ]
     },
