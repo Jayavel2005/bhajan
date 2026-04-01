@@ -34,7 +34,7 @@ export const Registration = () => {
       <Container>
         <SectionTitle title={t.title} />
 
-        <div className="max-w-5xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-8 lg:gap-16 items-center">
+        <div className="max-w-5xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-8 lg:gap-16 items-start">
           
           {/* Info Side (Left) */}
           <div ref={sectionRef} className="space-y-6 sm:space-y-8 order-2 lg:order-1">
@@ -53,6 +53,54 @@ export const Registration = () => {
                     <p className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-brand-saffron to-orange-600 leading-tight">
                       {t.entryValue}
                     </p>
+                  </div>
+                </div>
+
+                <div className="h-[1px] bg-gradient-to-r from-brand-saffron/20 via-transparent to-transparent" />
+
+                {/* Payment Option */}
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center shrink-0 border border-blue-100">
+                    <span className="text-xl">📱</span>
+                  </div>
+                  <div className="flex-1 w-full min-w-0">
+                     <h4 className="text-sm font-black text-gray-500 uppercase tracking-widest mb-3">Scan & Pay</h4>
+                     
+                     <div className="bg-white border border-brand-saffron/15 p-3 rounded-[1.5rem] shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] max-w-[260px]">
+                        {/* Cropped QR */}
+                        <div className="w-full aspect-square rounded-[1rem] overflow-hidden relative bg-white">
+                           <img 
+                             src="/payment-qr.png" 
+                             className="absolute w-[130%] h-[130%] top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-none object-contain pointer-events-none select-none" 
+                             alt="Scan QR" 
+                           />
+                        </div>
+
+                        {/* UPI Details Wrapper */}
+                        <div className="mt-1">
+                           <div className="flex items-center justify-between gap-1.5 bg-gray-50/80 border border-gray-100 p-2 rounded-xl group hover:border-brand-saffron/30 transition-colors">
+                              <span className="text-[10px] sm:text-xs font-bold text-gray-700 truncate tracking-tight select-all pl-1.5">
+                                evaluate.sound-1@okhdfcbank
+                              </span>
+                              <button 
+                                onClick={async (e) => {
+                                  const btn = e.currentTarget;
+                                  await navigator.clipboard.writeText('evaluate.sound-1@okhdfcbank');
+                                  const originalText = btn.innerHTML;
+                                  btn.innerHTML = 'Copied!';
+                                  btn.classList.add('text-green-600', 'border-green-300', 'bg-green-100');
+                                  setTimeout(() => {
+                                     btn.innerHTML = originalText;
+                                     btn.classList.remove('text-green-600', 'border-green-300', 'bg-green-100');
+                                  }, 2000);
+                                }}
+                                className="text-[9px] font-black text-brand-saffron uppercase tracking-widest px-3 py-1.5 rounded-lg border border-brand-saffron/20 hover:bg-brand-saffron hover:text-white transition-all shrink-0"
+                              >
+                                Copy
+                              </button>
+                           </div>
+                        </div>
+                     </div>
                   </div>
                 </div>
 
