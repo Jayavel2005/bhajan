@@ -28,7 +28,7 @@ export const content = {
       minutes: "நிமிடங்கள்",
       seconds: "வினாடிகள்",
       ended: "பதிவு முடிவடைந்தது",
-      registerBy: "முன்பதிவு செய்ய இறுதி நாள்: ஏப்ரல் 12"
+      registerBy: "முன்பதிவு செய்ய இறுதி நாள்: ஏப்ரல் 18"
     },
     details: {
       title: "நிகழ்ச்சி விவரங்கள்",
@@ -67,7 +67,7 @@ export const content = {
     rules: {
       title: "விதிமுறைகள்",
       items: [
-        { q: "முன்பதிவு", a: "ஏப்ரல் 12 தேதிக்குள் பதிவு செய்யவேண்டும். அணியினர் முன்கூட்டியே எத்தனை பேர் வருகின்றனர் என்பதை தெரிவிக்க வேண்டும்." },
+        { q: "முன்பதிவு", a: "ஏப்ரல் 18 தேதிக்குள் பதிவு செய்யவேண்டும். அணியினர் முன்கூட்டியே எத்தனை பேர் வருகின்றனர் என்பதை தெரிவிக்க வேண்டும்." },
         { q: "மேடை அமைப்பு", a: "ஒரே மேடையில் 2 அணியினர் போட்டியில் அமர்த்தபடுவர்." },
         { q: "பாடல் வடிவம்", a: "விருத்தம் பாட்டு நாமவளி இருக்க வேண்டும்." },
         { q: "பாடல் வரம்பு", a: "ஒரே நேரத்தில் பாடிய பாடலையே திருப்பி பாட கூடாது." },
@@ -91,7 +91,7 @@ export const content = {
       entryValue: "₹1000",
       refundLabel: "திரும்பப் பெறப்படும் தொகை",
       refundValue: "₹500 (போட்டி முடிவில் திருப்பி தரப்படும்)",
-      lastDate: "கடைசி தேதி: ஏப்ரல் 12",
+      lastDate: "கடைசி தேதி: ஏப்ரல் 18",
       cta: "பதிவு செய்ய"
     },
     contact: {
@@ -136,7 +136,7 @@ export const content = {
       minutes: "Mins",
       seconds: "Secs",
       ended: "Registration Closed",
-      registerBy: "Last Date to Register: April 12"
+      registerBy: "Last Date to Register: April 18"
     },
     details: {
       title: "Event Details",
@@ -175,7 +175,7 @@ export const content = {
     rules: {
       title: "Rules",
       items: [
-        { q: "Registration", a: "Register by April 12. Teams must inform the exact number of attendees in advance." },
+        { q: "Registration", a: "Register by April 18. Teams must inform the exact number of attendees in advance." },
         { q: "Stage Setup", a: "2 teams will be seated on the same stage during the competition." },
         { q: "Song Format", a: "Performance must include Virutham, Paattu, and Namavali." },
         { q: "Song Repetition", a: "Songs once sung cannot be repeated at any time." },
@@ -199,7 +199,7 @@ export const content = {
       entryValue: "₹1000",
       refundLabel: "Refundable Amount",
       refundValue: "₹500 (Refunded after the competition)",
-      lastDate: "Last Date: April 12",
+      lastDate: "Last Date: April 18",
       cta: "Register Now"
     },
     contact: {

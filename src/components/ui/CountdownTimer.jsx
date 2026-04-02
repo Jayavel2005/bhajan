@@ -7,7 +7,7 @@ export const CountdownTimer = ({ size = 'large' }) => {
   const t = content[language].timer;
 
   const calculateTimeLeft = () => {
-    const targetDate = new Date('2026-04-12T23:59:59').getTime();
+    const targetDate = new Date('2026-04-18T23:59:59').getTime();
     const now = new Date().getTime();
     const difference = targetDate - now;
 

@@ -52,7 +52,7 @@ const RegistrationForm = () => {
   });
 
   // Check if registration is still open
-  const targetDate = new Date('2026-04-12T23:59:59').getTime();
+  const targetDate = new Date('2026-04-18T23:59:59').getTime();
   const [isPastDeadline, setIsPastDeadline] = useState(new Date().getTime() > targetDate);
 
   const handleChange = (e) => {
