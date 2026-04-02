@@ -75,7 +75,7 @@ export const Location = () => {
              </div>
 
              {/* Right Side: Big QR Code Widget */}
-             <div className="hidden lg:flex flex-col items-center justify-center w-[320px] bg-[#F8FAFC] rounded-3xl p-8 border border-gray-100 shrink-0 relative overflow-hidden group">
+             <div className="flex flex-col items-center justify-center w-full lg:w-[320px] bg-[#F8FAFC] rounded-3xl p-8 border border-gray-100 shrink-0 relative overflow-hidden group">
                  {/* Decorative background blur */}
                  <div className="absolute -top-10 -right-10 w-48 h-48 bg-brand-saffron/10 rounded-full blur-3xl pointer-events-none group-hover:bg-brand-saffron/20 transition-colors" />
                  
